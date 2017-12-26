@@ -6,6 +6,8 @@ import java.net.URL;
 
 public abstract class DataGetter {
 
+  public static final String ERROR_MESSAGE = "0";
+
   protected static String getSource(String url) {
     String source = null;
     try {
@@ -31,69 +33,79 @@ public abstract class DataGetter {
   }
 
   protected static String getGeneric(String source, String key) {
-//    String[] arr1 = source.split(key);
-//    String str1 = arr1[1];
-//    String[] arr2 = str1.split(":");
-//    String str2 = arr2[2];
-//    String[] arr3 = str2.split(",");
-//    return arr3[0];
     return getGeneric(source, key, 1);
   }
 
   protected static String getGeneric(String source, String key, int instance) {
-    String[] arr1 = source.split(key);
-    String str1 = arr1[instance];
-    String[] arr2 = str1.split(":");
-    String str2 = arr2[2];
-    String[] arr3 = str2.split(",");
-    return arr3[0];
+    try {
+      String[] arr1 = source.split(key);
+      String str1 = arr1[instance];
+      String[] arr2 = str1.split(":");
+      String str2 = arr2[2];
+      String[] arr3 = str2.split(",");
+      return arr3[0];
+    } catch (Exception ex) {
+      return ERROR_MESSAGE;
+    }
   }
 
   protected static String getGeneric4QuarterSum(String source, String key) {
-    String[] arr = source.split(key);
+    try {
+      String[] arr = source.split(key);
 
-    // Get sections of source with information
-    String q1Part = arr[1];
-    String q2Part = arr[2];
-    String q3Part = arr[3];
-    String q4Part = arr[4];
+      // Get sections of source with information
+      String q1Part = arr[1];
+      String q2Part = arr[2];
+      String q3Part = arr[3];
+      String q4Part = arr[4];
 
-    // Get quarter data
-    String q1Str = getGenericQuarter(q1Part);
-    String q2Str = getGenericQuarter(q2Part);
-    String q3Str = getGenericQuarter(q3Part);
-    String q4Str = getGenericQuarter(q4Part);
+      // Get quarter data
+      String q1Str = getGenericQuarter(q1Part);
+      String q2Str = getGenericQuarter(q2Part);
+      String q3Str = getGenericQuarter(q3Part);
+      String q4Str = getGenericQuarter(q4Part);
 
-    // Convert to usable format
-    long q1 = Long.parseLong(q1Str);
-    long q2 = Long.parseLong(q2Str);
-    long q3 = Long.parseLong(q3Str);
-    long q4 = Long.parseLong(q4Str);
+      // Convert to usable format
+      long q1 = Long.parseLong(q1Str);
+      long q2 = Long.parseLong(q2Str);
+      long q3 = Long.parseLong(q3Str);
+      long q4 = Long.parseLong(q4Str);
 
-    // Add quarters
-    long sum = q1 + q2 + q3 + q4;
+      // Add quarters
+      long sum = q1 + q2 + q3 + q4;
 
-    return Long.toString(sum);
+      return Long.toString(sum);
+    } catch (Exception ex) {
+      return ERROR_MESSAGE;
+    }
   }
 
   protected static String getDate(String source, String key, int instance) {
-    String[] arr1 = source.split(key);
-    String str1 = arr1[instance];
-    String[] arr2 = str1.split(":");
-    String str2 = arr2[3];
-    String[] arr3 = str2.split("\"}");
+    try {
+      String[] arr1 = source.split(key);
+      String str1 = arr1[instance];
+      String[] arr2 = str1.split(":");
+      String str2 = arr2[3];
+      String[] arr3 = str2.split("\"}");
 
-    // Remove character 1 (") and return
-    return arr3[0].substring(1);
-  }
-  
-  private static String getGenericQuarter(String remainingSource) {
-    if (remainingSource.startsWith("\":{}")) {
-      return "0";
+      // Remove character 1 (") and return
+      return arr3[0].substring(1);
+    } catch (Exception ex) {
+      return ERROR_MESSAGE;
     }
-    String[] arr2 = remainingSource.split(":");
-    String str2 = arr2[2];
-    String[] arr3 = str2.split(",");
-    return arr3[0];
+  }
+
+  private static String getGenericQuarter(String remainingSource) {
+    try {
+      if (remainingSource.startsWith("\":{}")) {
+        return "0";
+      }
+      String[] arr2 = remainingSource.split(":");
+      String str2 = arr2[2];
+      String[] arr3 = str2.split(",");
+      return arr3[0];
+    } catch (Exception ex) {
+      return ERROR_MESSAGE;
+    }
   }
 }

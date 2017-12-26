@@ -22,9 +22,4 @@ public class CashFlowGetter extends DataGetter {
     return cashFlow;
   }
 
-  public static void main(String[] args) {
-    CashFlow cashFlow = generateCashFlow("msft");
-    System.out.println(cashFlow);
-  }
-
 }

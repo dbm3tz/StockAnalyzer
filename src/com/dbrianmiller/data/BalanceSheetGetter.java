@@ -34,7 +34,4 @@ public class BalanceSheetGetter extends DataGetter {
     return balanceSheet;
   }
 
-  public static void main(String[] args) {
-    generateBalanceSheet("msft");
-  }
 }

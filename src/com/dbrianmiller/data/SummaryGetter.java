@@ -22,4 +22,5 @@ public final class SummaryGetter extends DataGetter {
 
     return summary;
   }
+
 }

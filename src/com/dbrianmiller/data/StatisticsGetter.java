@@ -17,7 +17,7 @@ public final class StatisticsGetter extends DataGetter {
     String revenue = getGeneric(source, "totalRevenue");
     String grossProfit = getGeneric(source, "grossProfits");
     String ebitda = getGeneric(source, "\"},\"ebitda");
-    String beta = getGeneric(source, "\"},\"beta");
+    String beta = getGeneric(source, "\"},\"beta\"");
 
     Statistics statistics = new Statistics();
     statistics.setProfitMargin(profitMargin);
@@ -31,11 +31,5 @@ public final class StatisticsGetter extends DataGetter {
 
     return statistics;
   }
-  
-  // Problems: EBITDA, Beta
-  
-  public static void main(String[] args) {
-//    System.out.println(getStatistics("dwdp"));
-    System.out.println(generateStatistics("rtec"));
-  }
+
 }

@@ -19,22 +19,30 @@ public class AnalystEstimatesGetter extends DataGetter {
     return analystEstimate;
   }
 
-  protected static String getCapitalExpenditures(String source) {
-    String[] arr1 = source.split("earningsEstimate");
-    String str1 = arr1[3];
-    String[] arr2 = str1.split(":");
-    String str2 = arr2[3];
-    String[] arr3 = str2.split(",");
-    return arr3[0];
+  private static String getCapitalExpenditures(String source) {
+    try {
+      String[] arr1 = source.split("earningsEstimate");
+      String str1 = arr1[3];
+      String[] arr2 = str1.split(":");
+      String str2 = arr2[3];
+      String[] arr3 = str2.split(",");
+      return arr3[0];
+    } catch (Exception ex) {
+      return DataGetter.ERROR_MESSAGE;
+    }
   }
 
-  protected static String getSalePurchaseOfStock(String source) {
-    String[] arr1 = source.split("downLast90days");
-    String str1 = arr1[4];
-    String[] arr2 = str1.split(":");
-    String str2 = arr2[6];
-    String[] arr3 = str2.split(",");
-    return arr3[0];
+  private static String getSalePurchaseOfStock(String source) {
+    try {
+      String[] arr1 = source.split("downLast90days");
+      String str1 = arr1[4];
+      String[] arr2 = str1.split(":");
+      String str2 = arr2[6];
+      String[] arr3 = str2.split(",");
+      return arr3[0];
+    } catch (Exception ex) {
+      return DataGetter.ERROR_MESSAGE;
+    }
   }
 
 }
