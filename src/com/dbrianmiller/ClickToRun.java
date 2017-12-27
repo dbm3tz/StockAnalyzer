@@ -80,7 +80,7 @@ public class ClickToRun {
 
         // Columns AR to AY
         BalanceSheet balanceSheet = stock.getBalanceSheet();
-        //        String date = balanceSheet.getDate();
+        String date = balanceSheet.getDate();
         String cashEquity = balanceSheet.getCashEquity();
         String shortTermInvestments = balanceSheet.getShortTermInvestments();
         String totalAssets = balanceSheet.getTotalAssets();
@@ -89,7 +89,6 @@ public class ClickToRun {
         String otherCurrentLiabilities = balanceSheet.getOtherCurrentLiabilities();
         String longTermDebt = balanceSheet.getLongTermDebt();
         String netTangibleAssets = balanceSheet.getNetTangibleAssets();
-        //        typeThenMove(date);
         typeThenMove(cashEquity);
         typeThenMove(shortTermInvestments);
         typeThenMove(totalAssets);
@@ -116,7 +115,11 @@ public class ClickToRun {
         String salePurchaseOfStockAnalystEstimate = analystEstimate.getSalePurchaseOfStock();
         typeThenMove(capitalExpendituresAnalystEstimate);
         typeThenMove(salePurchaseOfStockAnalystEstimate);
-        moveLeft(57);
+        moveRight(1);
+
+        typeThenMove(date);
+
+        moveLeft(59);
       }
       TypeChar.getInstance().down();
     }

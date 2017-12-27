@@ -10,9 +10,9 @@ public final class IncomeStatementGetter extends DataGetter {
     String incomeStatementUrl = String.format(url, symbol);
     String source = getSource(incomeStatementUrl);
 
-    String rAndDExpenses = getGeneric4QuarterSum(source, "researchDevelopment");
-    String nonRecurring = getGeneric4QuarterSum(source, "nonRecurring");
-    String interestExpense = getGeneric4QuarterSum(source, "interestExpense");
+    String rAndDExpenses = getGeneric4QuarterSum(source, "researchDevelopment", 0);
+    String nonRecurring = getGeneric4QuarterSum(source, "nonRecurring", 0);
+    String interestExpense = getGeneric4QuarterSum(source, "interestExpense", 0);
 
     IncomeStatement incomeStatement = new IncomeStatement();
     incomeStatement.setrAndDExpenses(rAndDExpenses);

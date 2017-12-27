@@ -49,27 +49,50 @@ public abstract class DataGetter {
     }
   }
 
-  protected static String getGeneric4QuarterSum(String source, String key) {
+  protected static String getGeneric4QuarterSum(String source, String key, int offset) {
     try {
       String[] arr = source.split(key);
 
-      // Get sections of source with information
-      String q1Part = arr[1];
-      String q2Part = arr[2];
-      String q3Part = arr[3];
-      String q4Part = arr[4];
+      // Get quarter data and convert to usable format
+      long q1;
+      try {
+        String q1Part = arr[1 + offset];
+        String q1Str = getGenericQuarter(q1Part);
+        q1 = Long.parseLong(q1Str);
+      } catch (Exception ex) {
+        System.out.println("Unable to process q1 for " + key);
+        q1 = 0;
+      }
 
-      // Get quarter data
-      String q1Str = getGenericQuarter(q1Part);
-      String q2Str = getGenericQuarter(q2Part);
-      String q3Str = getGenericQuarter(q3Part);
-      String q4Str = getGenericQuarter(q4Part);
+      long q2;
+      try {
+        String q2Part = arr[2 + offset];
+        String q2Str = getGenericQuarter(q2Part);
+        q2 = Long.parseLong(q2Str);
+      } catch (Exception ex) {
+        System.out.println("Unable to process q2 for " + key);
+        q2 = 0;
+      }
 
-      // Convert to usable format
-      long q1 = Long.parseLong(q1Str);
-      long q2 = Long.parseLong(q2Str);
-      long q3 = Long.parseLong(q3Str);
-      long q4 = Long.parseLong(q4Str);
+      long q3;
+      try {
+        String q3Part = arr[3 + offset];
+        String q3Str = getGenericQuarter(q3Part);
+        q3 = Long.parseLong(q3Str);
+      } catch (Exception ex) {
+        System.out.println("Unable to process q3 for " + key);
+        q3 = 0;
+      }
+
+      long q4;
+      try {
+        String q4Part = arr[4 + offset];
+        String q4Str = getGenericQuarter(q4Part);
+        q4 = Long.parseLong(q4Str);
+      } catch (Exception ex) {
+        System.out.println("Unable to process q4 for " + key);
+        q4 = 0;
+      }
 
       // Add quarters
       long sum = q1 + q2 + q3 + q4;

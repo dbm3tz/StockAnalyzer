@@ -10,9 +10,9 @@ public class CashFlowGetter extends DataGetter {
     String cashFlowUrl = String.format(url, symbol);
     String source = getSource(cashFlowUrl);
 
-    String totalCashFlowFromOperatingActivities = getGeneric4QuarterSum(source, "totalCashFromOperatingActivities");
-    String capitalExpenditures = getGeneric4QuarterSum(source, "capitalExpenditures");
-    String salePurchaseOfStock = getGeneric4QuarterSum(source, "salePurchaseOfStock");
+    String totalCashFlowFromOperatingActivities = getGeneric4QuarterSum(source, "totalCashFromOperatingActivities", 3);
+    String capitalExpenditures = getGeneric4QuarterSum(source, "capitalExpenditures", 3);
+    String salePurchaseOfStock = getGeneric4QuarterSum(source, "salePurchaseOfStock", 3);
 
     CashFlow cashFlow = new CashFlow();
     cashFlow.setTotalCashFlowFromOperatingActivities(totalCashFlowFromOperatingActivities);
