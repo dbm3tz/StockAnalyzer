@@ -11,7 +11,7 @@ public class BalanceSheetGetter extends DataGetter {
     String source = getSource(balanceSheetUrl);
 
     String date = getDate(source, "endDate", 4);
-    String cashEquity = getGeneric(source, "},\"cash");
+    String cashEquity = getGeneric(source, "},\"cash", 2);
     String shortTermInvestments = getGeneric(source, "shortTermInvestments");
     String totalAssets = getGeneric(source, "totalAssets");
     String accountsPayable = getGeneric(source, "accountsPayable");
@@ -34,4 +34,7 @@ public class BalanceSheetGetter extends DataGetter {
     return balanceSheet;
   }
 
+  public static void main(String[] args) {
+    System.out.println(generateBalanceSheet("msft"));
+  }
 }
